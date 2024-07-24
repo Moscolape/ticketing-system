@@ -12,11 +12,13 @@ export default {
       colors: {
         primary :{
           DEFAULT: '#5DB379',
-          bg: '#F7FAF8'
+          bg: '#F7FAF8',
+          dark: '#274B33'
         },
         main: {
           1: '#8F9695',
-          2: '#B2B7B6'
+          2: '#B2B7B6',
+          3: '#3E4645'
         }
       },
       fontSize: {

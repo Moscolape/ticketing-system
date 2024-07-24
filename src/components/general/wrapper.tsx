@@ -44,7 +44,7 @@ const Wrapper: React.FC<DashboardWrapperProps> = ({ children }) => {
       <div className="w-full h-full">
         <Navbar />
         <div
-          className="w-full mt-24"
+          className="w-full"
         >
           {children}
         </div>

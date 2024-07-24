@@ -4,8 +4,8 @@ const Services = () => {
   
   return (
     <Wrapper>
-      <div className="p-10 bg-primary-bg">
-        <span>Reports coming soon...</span>
+      <div className="p-10 bg-primary-bg min-h-[82vh]">
+        <span></span>
       </div>
     </Wrapper>
   );

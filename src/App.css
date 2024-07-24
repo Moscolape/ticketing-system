@@ -1,42 +1,232 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* For Firefox */
+.custom-scrollbar-example::-moz-scrollbar {
+  width: 2px;
+  height: 2px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* General styling */
+.custom-scrollbar-example::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+/* width */
+.event-overview::-webkit-scrollbar {
+  width: 5px;
+}
+
+@keyframes leap {
+  0%, 100% {
+    transform: translateY(-10%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
   }
 }
 
-.card {
-  padding: 2em;
+@keyframes hit {
+  0%, 100% {
+    background-color: #1D4ED8;
+    animation-timing-function: ease-in;
+  }
+  50% {
+    background-color: #0E2B9B;
+    animation-timing-function: ease-out;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+.hover\:animate-leap:hover {
+  animation: leap 1s linear infinite;
+}
+
+.animate-hit {
+  animation: hit 2s linear infinite;
+}
+
+.animate-jump {
+  animation: leap 1s linear 2;
+}
+
+@keyframes hop {
+  0%, 100% {
+    transform: scale(1);
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    transform: scale(1.1);
+    animation-timing-function: ease-out;
+  }
+}
+
+.animate-hop {
+  animation: hop 1s linear 2;
+}
+
+.animate-popit {
+  animation: hop 1s linear 1;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(0);
+    animation-timing-function: ease-in-out;
+  }
+  25% {
+    transform: scale(1.2);
+    animation-timing-function: ease-out;
+  }
+  50% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: scale(1.1);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: scale(1);
+    animation-timing-function: ease-in;
+  }
+}
+
+.animate-bump {
+  animation: bump 1.5s linear 1;
+}
+
+.animate-hop {
+  animation: hop 1s linear 2;
+}
+
+
+@keyframes fadeUp {
+  0% {
+    transform: translateY(30%);
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 1s;
+}
+
+@keyframes swipeUp {
+  0% {
+    transform: translateY(1000%);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: none;
+    animation-timing-function: ease-in;
+  }
+}
+
+.animate-swipeUp {
+  animation: swipeUp 1s;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s;
+}
+
+
+
+
+@keyframes fadeRight {
+  0% {
+    transform: translateX(30%);
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+}
+
+.animate-fadeRight {
+  animation: fadeRight 1s;
+}
+
+
+@keyframes fadeLeft {
+  0% {
+    transform: translateX(-30%);
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+}
+
+.animate-fadeLeft {
+  animation: fadeLeft 1s;
+}
+
+
+@keyframes fadeDown {
+  0% {
+    transform: translateY(-30%);
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+}
+
+.animate-fadeDown {
+  animation: fadeDown 1.5s;
+}
+
+
+.animate-leap {
+  animation: hit 1s linear infinite;
+  animation-delay: 16.5s;
+}
+
+@keyframes fadeDownFast {
+  0% {
+    transform: translateY(-30%);
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+}
+
+.animate-fadeDownFast {
+  animation: fadeDownFast 0.5s;
 }

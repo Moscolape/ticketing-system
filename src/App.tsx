@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Flex, Spinner } from "@chakra-ui/react";
 
 // auth pages
-const Login = lazy(() => import("@pages/auth/sign-in"));
+const SignIn = lazy(() => import("@pages/auth/sign-in"));
 const ForgotPassword = lazy(() => import("@pages/auth/forgotten-password"));
-const ResetPassword = lazy(() => import("@pages/auth/reset-password"));
+const EnterOtp = lazy(() => import("@/pages/auth/enter-otp"));
+const ResetPassword = lazy(() => import("@/pages/auth/reset-password"));
 
 // main pages
 const Agents = lazy(() => import("@pages/main/agents"));
@@ -36,8 +37,9 @@ function App() {
         <div className="">
           <Routes>
             {/* Routes for auth Pages */}
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<SignIn />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/enter-otp" element={<EnterOtp />} />
             <Route path="/reset-password" element={<ResetPassword />} />
 
             {/* Routes for main pages */}
