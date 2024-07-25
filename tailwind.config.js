@@ -13,7 +13,8 @@ export default {
         primary :{
           DEFAULT: '#5DB379',
           bg: '#F7FAF8',
-          dark: '#274B33'
+          dark: '#274B33',
+          middle: '#55A36E'
         },
         main: {
           1: '#8F9695',

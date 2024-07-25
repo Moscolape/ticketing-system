@@ -17,7 +17,15 @@ import services from "@assets/services.svg"
 import services2 from "@assets/services2.svg"
 import transactions from "@assets/transactions.svg"
 import transactions2 from "@assets/transactions2.svg"
-
+import noService from "@assets/noServices.svg"
+import noAsset from "@assets/noAssets.svg"
+import noCenter from "@assets/noOutlets.svg"
+import plus from "@assets/addThem.svg"
+import search from "@assets/Vectorsearch.svg"
+import add from "@assets/plus.svg"
+import iconHorizon from "@assets/more-horizontal-circle-01 (1).svg"
+import cancel from "@assets/cancel-24px.svg";
+import completed from "@assets/completed.svg"
 
 export {
   Logo,
@@ -38,5 +46,14 @@ export {
   services,
   services2,
   transactions,
-  transactions2
+  transactions2,
+  noAsset,
+  noCenter,
+  noService,
+  plus,
+  add,
+  search,
+  iconHorizon,
+  cancel,
+  completed
 }
