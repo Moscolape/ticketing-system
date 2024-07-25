@@ -79,13 +79,7 @@ const ConfigServices = () => {
       description:
         "An official document permitting a person to operate a motor vehicle.",
       duration: "24 months",
-    },
-    {
-      name: "Drivers License",
-      description:
-        "An official document permitting a person to operate a motor vehicle.",
-      duration: "24 months",
-    },
+    }
   ];
 
   return (

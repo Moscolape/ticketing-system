@@ -26,6 +26,16 @@ import add from "@assets/plus.svg"
 import iconHorizon from "@assets/more-horizontal-circle-01 (1).svg"
 import cancel from "@assets/cancel-24px.svg";
 import completed from "@assets/completed.svg"
+import goBack from "@assets/goBack.svg"
+import edit from "@assets/edit.svg"
+import chevronDown from "@assets/chevron-down.svg"
+import grid from "@assets/grid.svg";
+import list from "@assets/list.svg";
+import addAsset from "@assets/addAsset.svg"
+import gridMenuIcon from "@assets/grid-menu-icon.svg"
+import car from "@assets/garbage-truck.svg"
+import premise from "@assets/building-03.svg"
+
 
 export {
   Logo,
@@ -55,5 +65,14 @@ export {
   search,
   iconHorizon,
   cancel,
-  completed
+  completed,
+  goBack,
+  edit,
+  chevronDown,
+  grid,
+  list,
+  addAsset,
+  gridMenuIcon,
+  car,
+  premise
 }

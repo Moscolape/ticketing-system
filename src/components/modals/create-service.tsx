@@ -136,7 +136,7 @@ const CreateService: React.FC<CreateServiceModalProps> = ({
                 speed="0.8s"
               />
             ) : ( */}
-            <span>{service ? "Save" : "Create"}</span>
+            <span>{service ? "Save Changes" : "Create"}</span>
             {/* )} */}
           </button>
         </div>

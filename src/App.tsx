@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Flex, Spinner } from "@chakra-ui/react";
 
+
 // auth pages
 const SignIn = lazy(() => import("@pages/auth/sign-in"));
 const ForgotPassword = lazy(() => import("@pages/auth/forgotten-password"));
@@ -16,6 +17,10 @@ const Services = lazy(() => import("@pages/main/services"));
 const Transactions = lazy(() => import("@pages/main/transactions"));
 const Configurations = lazy(() => import("@pages/main/configurations"));
 
+
+// extra pages
+const CreateCustomer = lazy(() => import("@components/customers-components/create-new-customer"))
+const IndividualCustomer = lazy(() => import("@components/customers-components/individual-customer"))
 
 
 function App() {
@@ -49,6 +54,11 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/configurations" element={<Configurations />} />
+
+            {/* Routes for extra pages */}
+            <Route path="/customers/create-new-customer" element={<CreateCustomer />} />
+            <Route path="/customers/:id" element={<IndividualCustomer />} />
+
           </Routes>
         </div>
       </Router>

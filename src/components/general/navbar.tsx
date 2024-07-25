@@ -132,7 +132,7 @@ const Navbar = () => {
   );
 
   return (
-    <>
+    <div className="fixed z-50 w-full">
       <div className="h-[11vh] bg-white border-b flex justify-between items-center px-5">
         <div className="flex items-center">
           <img src={Logo} alt="" />
@@ -202,10 +202,10 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      <div className="bg-white h-[7vh] px-5 flex items-center justify-start">
+      <div className="bg-white h-[7vh] px-5 flex items-center justify-start border-b">
         <span className="font-Urbanist font-semibold text-h9">{navbarText}</span>
       </div>
-    </>
+    </div>
   );
 };
 

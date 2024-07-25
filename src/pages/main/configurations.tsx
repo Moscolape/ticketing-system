@@ -24,6 +24,7 @@ const Configurations = () => {
 
   useEffect(() => {
     setActiveTab("service");
+    sessionStorage.setItem("configTab", "service");
   }, []);
 
   return (

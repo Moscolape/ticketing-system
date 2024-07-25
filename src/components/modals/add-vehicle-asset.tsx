@@ -1,26 +1,20 @@
 import { cancel, star } from "@/constants/assets";
 import React, { useEffect, useRef, useState } from "react";
 import "../../App.css";
-import { statesData } from "@/utils/statesdata";
+
 import CreatedSuccessfully from "./created-successfully";
 import { Centers } from "../configuration-components/config-outlets";
 
-type CreateSurveyModalProps = {
+type AddVehicleAssetModalProps = {
   closed: () => void;
-  center?: Centers | null;
+  center: Centers | null;
 };
 
-const CreateCenter: React.FC<CreateSurveyModalProps> = ({ closed, center }) => {
+const AddVehicleAsset: React.FC<AddVehicleAssetModalProps> = ({
+  closed,
+  center,
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [selectedState, setSelectedState] = useState<string>(
-    center?.state || ""
-  );
-  const [selectedLGA, setSelectedLGA] = useState<string>(center?.lga || "");
-  const [name, setName] = useState<string>(center?.name || "");
-  const [address, setAddress] = useState<string>(center?.address || "");
-  const [contactPerson, setContactPerson] = useState<string>(
-    center?.contactPerson || ""
-  );
   const [phoneNumber, setPhoneNumber] = useState<string>(
     center?.phoneNumber || ""
   );
@@ -30,19 +24,6 @@ const CreateCenter: React.FC<CreateSurveyModalProps> = ({ closed, center }) => {
   const createCenter = () => {
     setOpenModal(true);
   };
-
-  const handleStateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedState(event.target.value);
-    setSelectedLGA(""); // Reset LGA selection when state changes
-  };
-
-  const handleLGAChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedLGA(event.target.value);
-  };
-
-  const filteredLGAs = selectedState
-    ? statesData.find((state) => state.state === selectedState)?.lgas || []
-    : [];
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -64,11 +45,11 @@ const CreateCenter: React.FC<CreateSurveyModalProps> = ({ closed, center }) => {
     <div className="w-screen h-screen bg-[#0000008c] flex items-center justify-center z-50 fixed top-0 left-0">
       <div
         ref={modalRef}
-        className="bg-white w-[40%] m-auto rounded-lg p-7 animate-fadeDownFast relative font-Urbanist"
+        className="bg-white w-[50%] m-auto rounded-lg p-7 animate-fadeDownFast relative font-Urbanist"
       >
-        <div className="mb-5 border-b pb-5">
+        <div className="mb-5">
           <span className="block font-Urbanist font-semibold text-h8 mt-4">
-            {center ? "Edit Center" : "Create Center"}
+            {center ? "Edit Vehicle" : "Add Vehicle Asset"}
           </span>
           {/* Close button */}
           <img
@@ -85,77 +66,62 @@ const CreateCenter: React.FC<CreateSurveyModalProps> = ({ closed, center }) => {
               htmlFor="state"
               className="block font-Urbanist font-medium text-h12 mb-2 text-main-3"
             >
-              Name of Center
+              Vehicle Class
             </label>
             <img src={star} alt="asterisk" className="inline-block ml-1" />
           </div>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="px-4 py-2 border hover:border-main-2 rounded-md outline-none w-full"
-            placeholder="Enter the name of the center"
-          />
-        </div>
-        <div className="mt-5">
-          <div className="flex items-start">
-            <label
-              htmlFor="state"
-              className="block font-Urbanist font-medium text-h12 mb-2 text-main-3"
-            >
-              Address
-            </label>
-            <img src={star} alt="asterisk" className="inline-block ml-1" />
-          </div>
-          <textarea
-            name=""
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            className="resize-none w-full hover:border-main-2 text-gray-1 p-3 h-28 outline-none border rounded-md"
-            placeholder="Write the address of the center"
-          ></textarea>
+          <select
+            name="duration"
+            // value={duration}
+            // onChange={(e) => setDuration(e.target.value)}
+            className="border rounded-lg outline-none w-full p-3 text-h12 font-Inter hover:border-main-2"
+          >
+            <option value="">--select customer type--</option>
+            <option value="individual">Individual</option>
+            <option value="organization">Organization</option>
+          </select>
         </div>
         <div className="w-full flex sm:flex-row mo:flex-col justify-between">
           <div className="mt-5 w-[48%]">
-            <label
-              htmlFor="state"
-              className="block font-Inter font-medium text-h12 mb-2 text-gray-3"
-            >
-              State
-            </label>
+            <div className="flex items-start">
+              <label
+                htmlFor="state"
+                className="block font-Urbanist font-medium text-h12 mb-2 text-main-3"
+              >
+                Vehicle Make
+              </label>
+              <img src={star} alt="asterisk" className="inline-block ml-1" />
+            </div>
             <select
-              id="state"
-              className="border hover:border-main-2 rounded-lg outline-none w-full p-3 text-h12 font-Inter"
-              value={selectedState}
-              onChange={handleStateChange}
+              name="duration"
+              // value={duration}
+              // onChange={(e) => setDuration(e.target.value)}
+              className="border rounded-lg outline-none w-full p-3 text-h12 font-Inter hover:border-main-2"
             >
-              <option value="">Select State</option>
-              {statesData.map((state) => (
-                <option key={state.alias} value={state.state}>
-                  {state.state}
-                </option>
-              ))}
+              <option value="">--select customer type--</option>
+              <option value="individual">Individual</option>
+              <option value="organization">Organization</option>
             </select>
           </div>
           <div className="mt-5 w-[48%]">
-            <label
-              htmlFor="lga"
-              className="block font-Inter font-medium text-h12 mb-2 text-gray-3"
-            >
-              LGA
-            </label>
+            <div className="flex items-start">
+              <label
+                htmlFor="state"
+                className="block font-Urbanist font-medium text-h12 mb-2 text-main-3"
+              >
+                Vehicle Model
+              </label>
+              <img src={star} alt="asterisk" className="inline-block ml-1" />
+            </div>
             <select
-              id="lga"
-              value={selectedLGA}
-              onChange={handleLGAChange}
-              className="border hover:border-main-2 rounded-lg outline-none w-full p-3 text-h12 font-Inter"
+              name="duration"
+              // value={duration}
+              // onChange={(e) => setDuration(e.target.value)}
+              className="border rounded-lg outline-none w-full p-3 text-h12 font-Inter hover:border-main-2"
             >
-              <option value="">Select LGA</option>
-              {filteredLGAs.map((lga) => (
-                <option key={lga} value={lga}>
-                  {lga}
-                </option>
-              ))}
+              <option value="">--select customer type--</option>
+              <option value="individual">Individual</option>
+              <option value="organization">Organization</option>
             </select>
           </div>
         </div>
@@ -165,17 +131,20 @@ const CreateCenter: React.FC<CreateSurveyModalProps> = ({ closed, center }) => {
               htmlFor="state"
               className="block font-Urbanist font-medium text-h12 mb-2 text-main-3"
             >
-              Contact Person
+              Registration Type
             </label>
             <img src={star} alt="asterisk" className="inline-block ml-1" />
           </div>
-          <input
-            type="text"
-            value={contactPerson}
-            onChange={(e) => setContactPerson(e.target.value)}
-            className="px-4 py-2 border hover:border-main-2 rounded-md outline-none w-full"
-            placeholder="Enter the name of the contact person"
-          />
+          <select
+            name="duration"
+            // value={duration}
+            // onChange={(e) => setDuration(e.target.value)}
+            className="border rounded-lg outline-none w-full p-3 text-h12 font-Inter hover:border-main-2"
+          >
+            <option value="">--select customer type--</option>
+            <option value="individual">Individual</option>
+            <option value="organization">Organization</option>
+          </select>
         </div>
         <div className="w-full flex sm:flex-row mo:flex-col justify-between">
           <div className="mt-5 sm:w-[48%] mo-w-full">
@@ -184,7 +153,7 @@ const CreateCenter: React.FC<CreateSurveyModalProps> = ({ closed, center }) => {
                 htmlFor="firstName"
                 className="block font-DM-Sans font-Inter font-medium text-h12 mb-2 text-main-3"
               >
-                Phone Number
+                Vehicle Colour
               </label>
               <img src={star} alt="asterisk" className="inline-block ml-1" />
             </div>
@@ -202,7 +171,45 @@ const CreateCenter: React.FC<CreateSurveyModalProps> = ({ closed, center }) => {
                 htmlFor="lastName"
                 className="block font-DM-Sans font-Inter font-medium text-h12 mb-2 text-main-3"
               >
-                Email
+                Vehicle Engine Number
+              </label>
+              <img src={star} alt="asterisk" className="inline-block ml-1" />
+            </div>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="px-4 py-2 border hover:border-main-2 rounded-md outline-none w-full"
+              placeholder="e.g sample@gmail.com"
+            />
+          </div>
+        </div>
+        <div className="w-full flex sm:flex-row mo:flex-col justify-between">
+          <div className="mt-5 sm:w-[48%] mo-w-full">
+            <div className="flex items-start">
+              <label
+                htmlFor="firstName"
+                className="block font-DM-Sans font-Inter font-medium text-h12 mb-2 text-main-3"
+              >
+                VIN
+              </label>
+              <img src={star} alt="asterisk" className="inline-block ml-1" />
+            </div>
+            <input
+              type="text"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              className="px-4 py-2 border hover:border-main-2 rounded-md outline-none w-full"
+              placeholder="0805 111 2347"
+            />
+          </div>
+          <div className="mt-5 sm:w-[48%] mo-w-full">
+            <div className="flex items-start">
+              <label
+                htmlFor="lastName"
+                className="block font-DM-Sans font-Inter font-medium text-h12 mb-2 text-main-3"
+              >
+                Vehicle Registration Number
               </label>
               <img src={star} alt="asterisk" className="inline-block ml-1" />
             </div>
@@ -229,7 +236,7 @@ const CreateCenter: React.FC<CreateSurveyModalProps> = ({ closed, center }) => {
                 speed="0.8s"
               />
             ) : ( */}
-            <span>{center ? "Save Changes" : "Create"}</span>
+            <span>{center ? "Save Changes" : "Add"}</span>
             {/* )} */}
           </button>
         </div>
@@ -239,4 +246,4 @@ const CreateCenter: React.FC<CreateSurveyModalProps> = ({ closed, center }) => {
   );
 };
 
-export default CreateCenter;
+export default AddVehicleAsset;
