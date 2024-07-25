@@ -20,7 +20,9 @@ const Configurations = lazy(() => import("@pages/main/configurations"));
 
 // extra pages
 const CreateCustomer = lazy(() => import("@components/customers-components/create-new-customer"))
+const CreateAgent = lazy(()=> import("@components/agents-components/create-new-agent"))
 const IndividualCustomer = lazy(() => import("@components/customers-components/individual-customer"))
+const IndividualService = lazy(() => import("@components/services-components/individual-service"))
 
 
 function App() {
@@ -57,7 +59,9 @@ function App() {
 
             {/* Routes for extra pages */}
             <Route path="/customers/create-new-customer" element={<CreateCustomer />} />
+            <Route path="/agents/create-new-agent" element={<CreateAgent />} />
             <Route path="/customers/:id" element={<IndividualCustomer />} />
+            <Route path="/services/:id" element={<IndividualService />} />
 
           </Routes>
         </div>

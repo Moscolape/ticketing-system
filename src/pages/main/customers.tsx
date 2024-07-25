@@ -166,9 +166,7 @@ const Customers = () => {
                             ref={modalRef}
                             className="font-Inter bg-white p-2 w-32 absolute top-14 right-6 flex flex-col rounded-lg drop-shadow-md z-30"
                           >
-                            <Link
-                              to={`/customers/${user.id}`}
-                            >
+                            <Link to={`/customers/${user.id}`}>
                               <span className="text-h13 text-main-3 p-2 hover:bg-gray-100 cursor-pointer rounded-lg flex items-center">
                                 View Details
                               </span>
@@ -191,15 +189,17 @@ const Customers = () => {
             <span className="block my-4 text-h10 text-[#798181] font-Urbanist">
               You have no customer yet, create your first customer now.
             </span>
-            <button
-              type="submit"
-              className="flex items-center justify-center hover:bg-primary-dark bg-primary text-white py-3 px-4 rounded-md  cursor-pointer"
-            >
-              <img src={plus} alt="" className="scale-90" />
-              <span className="ml-3 font-medium font-Urbanist">
-                Create Customer
-              </span>
-            </button>
+            <Link to="/customers/create-new-customer">
+              <button
+                type="submit"
+                className="flex items-center justify-center hover:bg-primary-dark bg-primary text-white py-3 px-4 rounded-md  cursor-pointer"
+              >
+                <img src={plus} alt="" className="scale-90" />
+                <span className="ml-3 font-medium font-Urbanist">
+                  Create Customer
+                </span>
+              </button>
+            </Link>
           </div>
         )}
       </div>

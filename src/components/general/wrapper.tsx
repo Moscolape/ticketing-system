@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import Navbar from "./navbar";
 
-
 type DashboardWrapperProps = {
   children: ReactNode;
 };
@@ -38,18 +37,13 @@ const ErrorBoundaryComponent: React.FC<DashboardWrapperProps> = ({
 
 // MainWrapper component wraps the application with a sidebar, navbar, and error boundary
 const Wrapper: React.FC<DashboardWrapperProps> = ({ children }) => {
-
   return (
-    <ErrorBoundaryComponent>
-      <div className="w-full h-full">
-        <Navbar />
-        <div
-          className="w-full pt-[18vh]"
-        >
-          {children}
-        </div>
-      </div>
-    </ErrorBoundaryComponent>
+    <div className="w-full h-full">
+      <Navbar />
+      <ErrorBoundaryComponent>
+        <div className="w-full pt-[18vh]">{children}</div>
+      </ErrorBoundaryComponent>
+    </div>
   );
 };
 

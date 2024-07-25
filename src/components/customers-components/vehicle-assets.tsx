@@ -115,7 +115,7 @@ const VehicleAssets: React.FC<VehicleProps> = ({ data, view }) => {
         </div>
       )}
       {view === "grid" && (
-        <div className="grid grid-cols-3 gap-3 mt-10">
+        <div className="grid grid-cols-2 gap-3 mt-10">
           {data.map((asset, index) => {
             return (
               <div
@@ -139,7 +139,7 @@ const VehicleAssets: React.FC<VehicleProps> = ({ data, view }) => {
                     </span>
                   </div>
                 </div>
-                <div className="mt-5 grid grid-cols-2 gap-1 font-Urbanist">
+                <div className="mt-5 grid grid-cols-2 gap-5 font-Urbanist">
                   <div className="flex justify-between bg-[#CDE7D5] px-2 py-1 rounded-full">
                     <span className="font-semibold text-h13">Vehicle Make</span>
                     <span className="text-h13">{asset.make}</span>

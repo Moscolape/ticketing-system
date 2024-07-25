@@ -35,6 +35,7 @@ import addAsset from "@assets/addAsset.svg"
 import gridMenuIcon from "@assets/grid-menu-icon.svg"
 import car from "@assets/garbage-truck.svg"
 import premise from "@assets/building-03.svg"
+import serviceIcon from "@assets/service-icon.svg"
 
 
 export {
@@ -74,5 +75,6 @@ export {
   addAsset,
   gridMenuIcon,
   car,
-  premise
+  premise,
+  serviceIcon
 }
