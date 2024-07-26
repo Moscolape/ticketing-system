@@ -48,7 +48,7 @@ const IndividualCustomers = () => {
           </div>
           <div className="w-[85%] m-auto">
             {customerTab === "details" && <CustomerDetails />}
-            {customerTab === "assets" && <CustomerAssets />}
+            {customerTab === "assets" && <CustomerAssets onComplete={() => {}} />}
           </div>
         </div>{" "}
       </div>

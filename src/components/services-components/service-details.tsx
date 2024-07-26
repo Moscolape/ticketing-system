@@ -49,7 +49,7 @@ const ServiceDetails = () => {
       <div>
         <div className="flex items-start">
           <span className="block font-Urbanist font-medium text-h12 mb-2 text-main-3">
-            Name of Customer
+            Name of Service
           </span>
         </div>
         {isEditing ? (
@@ -69,13 +69,13 @@ const ServiceDetails = () => {
       <div className="mt-5">
         <div className="flex items-start">
           <span className="block font-Urbanist font-medium text-h12 mb-2 text-main-3">
-            Address
+            Quantity in Stock
           </span>
         </div>
         {isEditing ? (
           <input
             type="text"
-            name="address"
+            name="qty_stock"
             value={serviceDetails.qty_stock}
             onChange={handleInputChange}
             className="px-4 py-2 border hover:border-main-2 rounded-md outline-none w-full"
@@ -89,13 +89,13 @@ const ServiceDetails = () => {
       <div className="mt-5">
         <div className="flex items-start">
           <span className="block font-Urbanist font-medium text-h12 mb-2 text-main-3">
-            Customer Type
+            Total Sold
           </span>
         </div>
         {isEditing ? (
           <input
             type="text"
-            name="address"
+            name="qty_sold"
             value={serviceDetails.qty_sold}
             onChange={handleInputChange}
             className="px-4 py-2 border hover:border-main-2 rounded-md outline-none w-full"
@@ -110,13 +110,13 @@ const ServiceDetails = () => {
         <div className="mt-5 sm:w-[48%] mo-w-full">
           <div className="flex items-start">
             <span className="block font-Urbanist font-medium text-h12 mb-2 text-main-3">
-              Phone Number
+              Number of Agents
             </span>
           </div>
           {isEditing ? (
             <input
               type="text"
-              name="phoneNumber"
+              name="no_of_agents"
               value={serviceDetails.no_of_agents}
               onChange={handleInputChange}
               className="px-4 py-2 border hover:border-main-2 rounded-md outline-none w-full"

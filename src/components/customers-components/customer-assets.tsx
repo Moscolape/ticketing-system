@@ -13,6 +13,7 @@ import AddBusinessAsset from "../modals/add-business-asset";
 import AddVehicleAsset from "../modals/add-vehicle-asset";
 
 export interface Vehicles {
+  id: string;
   class: string;
   make: string;
   model: string;
@@ -24,13 +25,21 @@ export interface Vehicles {
 }
 
 export interface Businesses {
+  id: string;
   name: string;
   address: string;
   phone_number: string;
   email: string;
 }
 
-const CustomerAssets = () => {
+interface OnCompleteProps {
+  onComplete: (assets: {
+    vehicles: Vehicles[];
+    businesses: Businesses[];
+  }) => void;
+}
+
+const CustomerAssets: React.FC<OnCompleteProps> = ({ onComplete }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [viewTab, setViewTab] = useState<"list" | "grid">(
@@ -59,79 +68,99 @@ const CustomerAssets = () => {
     setSearchTerm(event.target.value);
   };
 
-  const allBusinesses = [
+  const allBusinesses: Businesses[] = [
     {
-      name: "Dangote Cement",
-      address: "Adebayo str., Lagos",
-      phone_number: "08023924589",
-      email: "dangote@gmail.com",
+      id: "101",
+      name: "Tech Innovations Inc.",
+      address: "123 Silicon Valley, CA",
+      phone_number: "415-555-1234",
+      email: "info@techinnovations.com",
     },
     {
-      name: "Dangote Cement",
-      address: "Adebayo str., Lagos",
-      phone_number: "08023924589",
-      email: "dangote@gmail.com",
+      id: "102",
+      name: "Green Earth Enterprises",
+      address: "456 Elm Street, Chicago, IL",
+      phone_number: "312-555-5678",
+      email: "contact@greenearth.com",
     },
     {
-      name: "Dangote Cement",
-      address: "Adebayo str., Lagos",
-      phone_number: "08023924589",
-      email: "dangote@gmail.com",
+      id: "103",
+      name: "Global Foods Ltd.",
+      address: "789 Maple Avenue, New York, NY",
+      phone_number: "212-555-9876",
+      email: "support@globalfoods.com",
     },
     {
-      name: "Dangote Cement",
-      address: "Adebayo str., Lagos",
-      phone_number: "08023924589",
-      email: "dangote@gmail.com",
+      id: "104",
+      name: "Bright Future Consultancy",
+      address: "101 Pine Road, Austin, TX",
+      phone_number: "512-555-3456",
+      email: "info@brightfuture.com",
     },
   ];
+  
 
-  const allVehicles = [
+  const allVehicles: Vehicles[] = [
     {
-      class: "Sports car",
-      make: "Toyota",
-      model: "Range Rover",
-      registration: "private",
-      color: "red",
-      engineNo: "345424324",
-      vin: "145343314",
-      regNo: "65855474",
+      id: "V001",
+      class: "Sedan",
+      make: "Honda",
+      model: "Civic",
+      registration: "public",
+      color: "blue",
+      engineNo: "XYZ123456",
+      vin: "1HGBH41JXMN109186",
+      regNo: "TX1234AB",
     },
     {
-      class: "Sports car",
-      make: "Toyota",
-      model: "Range Rover",
-      registration: "private",
-      color: "red",
-      engineNo: "345424324",
-      vin: "145343314",
-      regNo: "65855474",
+      id: "V002",
+      class: "SUV",
+      make: "Ford",
+      model: "Explorer",
+      registration: "public",
+      color: "black",
+      engineNo: "ABC987654",
+      vin: "1FMEU7E83JUA65712",
+      regNo: "CA5678CD",
     },
     {
-      class: "Sports car",
-      make: "Toyota",
-      model: "Range Rover",
+      id: "V003",
+      class: "Convertible",
+      make: "BMW",
+      model: "Z4",
       registration: "private",
-      color: "red",
-      engineNo: "345424324",
-      vin: "145343314",
-      regNo: "65855474",
+      color: "white",
+      engineNo: "LMN456789",
+      vin: "WBA3A9C55FNN12345",
+      regNo: "FL9012EF",
     },
     {
-      class: "Sports car",
-      make: "Toyota",
-      model: "Range Rover",
-      registration: "private",
+      id: "V004",
+      class: "Pickup Truck",
+      make: "Chevrolet",
+      model: "Silverado",
+      registration: "public",
       color: "red",
-      engineNo: "345424324",
-      vin: "145343314",
-      regNo: "65855474",
+      engineNo: "JKL345678",
+      vin: "1GCNCPEH2GZ120345",
+      regNo: "NY3456GH",
     },
   ];
+  
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [openVehicle, setOpenVehicle] = useState(false);
   const [openBusiness, setOpenBusiness] = useState(false);
+
+  const [selectedVehiclePitches, setSelectedVehiclePitches] = useState<
+    string[]
+  >([]);
+  const [isAllVehiclesSelected, setIsAllVehiclesSelected] = useState(false);
+
+  const [selectedBusinessPitches, setSelectedBusinessPitches] = useState<
+    string[]
+  >([]);
+  const [isAllBusinessesSelected, setIsAllBusinessesSelected] = useState(false);
 
   const handleShowDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -158,6 +187,72 @@ const CustomerAssets = () => {
     };
   }, []);
 
+  const handleSelectPitch = (pitchId: string) => {
+    if (assetTypeTab === "vehicles") {
+      setSelectedVehiclePitches((prevSelected) =>
+        prevSelected.includes(pitchId)
+          ? prevSelected.filter((id) => id !== pitchId)
+          : [...prevSelected, pitchId]
+      );
+    } else {
+      setSelectedBusinessPitches((prevSelected) =>
+        prevSelected.includes(pitchId)
+          ? prevSelected.filter((id) => id !== pitchId)
+          : [...prevSelected, pitchId]
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (assetTypeTab === "vehicles") {
+      setIsAllVehiclesSelected(
+        selectedVehiclePitches.length === allVehicles.length
+      );
+    } else {
+      setIsAllBusinessesSelected(
+        selectedBusinessPitches.length === allBusinesses.length
+      );
+    }
+  }, [
+    selectedVehiclePitches,
+    selectedBusinessPitches,
+    allVehicles.length,
+    allBusinesses.length,
+    assetTypeTab,
+  ]);
+
+  const handleBulkSelect = (selected: boolean) => {
+    if (assetTypeTab === "vehicles") {
+      setIsAllVehiclesSelected(selected);
+      if (selected) {
+        setSelectedVehiclePitches(allVehicles.map((pitch) => pitch.id));
+      } else {
+        setSelectedVehiclePitches([]);
+      }
+    } else {
+      setIsAllBusinessesSelected(selected);
+      if (selected) {
+        setSelectedBusinessPitches(allBusinesses.map((pitch) => pitch.id));
+      } else {
+        setSelectedBusinessPitches([]);
+      }
+    }
+  };
+
+  const handleComplete = () => {
+    const selectedAssets = {
+      vehicles: allVehicles.filter((vehicle) =>
+        selectedVehiclePitches.includes(vehicle.id)
+      ),
+      businesses: allBusinesses.filter((business) =>
+        selectedBusinessPitches.includes(business.id)
+      ),
+    };
+    onComplete(selectedAssets);
+  };
+
+  const totalSelected = selectedBusinessPitches.length + selectedVehiclePitches.length
+
   return (
     <>
       {allVehicles.length > 0 && allBusinesses.length > 0 ? (
@@ -166,20 +261,26 @@ const CustomerAssets = () => {
             <span className="block font-Urbanist font-semibold text-h8 mt-10">
               Michael Johnson
             </span>
-            <button
-              className="py-2 px-4 rounded-md bg-primary hover:bg-primary-dark flex items-center more"
-              onClick={handleShowDropdown}
-            >
-              <img src={plus} alt="" className="mr-2 scale-75" />
-              <span className="text-white text-h12 font-Urbanist">
-                Add Asset
+            {location.pathname.includes("dashboard") ? (
+              <span className="text-[#FF7650] font-semibold text-h12 cursor-pointer">
+                Skip and proceed without asset
               </span>
-              <img
-                src={chevronDown}
-                alt=""
-                className="ml-3 scale-90 -rotate-90"
-              />
-            </button>
+            ) : (
+              <button
+                className="py-2 px-4 rounded-md bg-primary hover:bg-primary-dark flex items-center more"
+                onClick={handleShowDropdown}
+              >
+                <img src={plus} alt="" className="mr-2 scale-75" />
+                <span className="text-white text-h12 font-Urbanist">
+                  Add Asset
+                </span>
+                <img
+                  src={chevronDown}
+                  alt=""
+                  className="ml-3 scale-90 -rotate-90"
+                />
+              </button>
+            )}
             {showDropdown && (
               <div
                 ref={modalRef}
@@ -262,12 +363,34 @@ const CustomerAssets = () => {
               </div>
             </div>
             {assetTypeTab === "vehicles" && (
-              <VehicleAssets data={allVehicles} view={viewTab} />
+              <VehicleAssets
+                data={allVehicles}
+                view={viewTab}
+                onPitchSelect={handleSelectPitch}
+                onBulkSelect={handleBulkSelect}
+                isAllSelected={isAllVehiclesSelected}
+                selectedPitches={selectedVehiclePitches}
+              />
             )}
             {assetTypeTab === "business" && (
-              <BusinessAssets data={allBusinesses} view={viewTab} />
+              <BusinessAssets
+                data={allBusinesses}
+                view={viewTab}
+                onPitchSelect={handleSelectPitch}
+                onBulkSelect={handleBulkSelect}
+                isAllSelected={isAllBusinessesSelected}
+                selectedPitches={selectedBusinessPitches}
+              />
             )}
           </div>
+          {location.pathname.includes("dashboard") && (
+            <div className="mt-5 p-3 flex items-center justify-end text-white bg-primary rounded-lg shadow-md text-h12 font-Urbanist">
+              <span className="mr-5">{totalSelected} assets selected</span>
+              <button className="bg-white text-main-3 p-2" onClick={handleComplete} title="Proceed for payment">
+                Continue to checkout
+              </button>
+            </div>
+          )}
         </div>
       ) : (
         <div className="flex w-full h-[65vh] flex-col justify-center items-center my-5">
@@ -286,8 +409,12 @@ const CustomerAssets = () => {
           </button>
         </div>
       )}
-      {openBusiness && <AddBusinessAsset asset={null} closed={() => setOpenBusiness(false)} />}
-      {openVehicle && <AddVehicleAsset center={null} closed={() => setOpenVehicle(false)}/>}
+      {openBusiness && (
+        <AddBusinessAsset asset={null} closed={() => setOpenBusiness(false)} />
+      )}
+      {openVehicle && (
+        <AddVehicleAsset center={null} closed={() => setOpenVehicle(false)} />
+      )}
     </>
   );
 };

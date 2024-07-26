@@ -58,14 +58,14 @@ const CustomOtpInput: React.FC<CustomOtpInputProps> = ({ numInputs, otp, setOtp 
           onKeyDown={(e) => handleKeyDown(e, index)}
           className="otp-input"
           style={{
-            width: '60px',
-            height: '60px',
+            width: '55px',
+            height: '55px',
             border: '1px solid #e0e0e0',
             borderRadius: '10px',
             textAlign: 'center',
             fontFamily: 'Urbanist',
             fontSize: '20px',
-            outline: 'none'
+            outline: 'none',
           }}
         />
       ))}

@@ -7,9 +7,20 @@ import { Businesses } from "./customer-assets";
 interface VehicleProps {
   data: Businesses[];
   view: string;
+  onPitchSelect: (pitchId: string) => void;
+  onBulkSelect: (selected: boolean) => void;
+  isAllSelected: boolean;
+  selectedPitches: string[];
 }
 
-const BusinessAssets: React.FC<VehicleProps> = ({ data, view }) => {
+const BusinessAssets: React.FC<VehicleProps> = ({
+  data,
+  view,
+  onBulkSelect,
+  onPitchSelect,
+  isAllSelected,
+  selectedPitches,
+}) => {
   const [showDropdownIndex, setShowDropdownIndex] = useState(-1);
 
   const handleShow = (index: number) => {
@@ -42,6 +53,14 @@ const BusinessAssets: React.FC<VehicleProps> = ({ data, view }) => {
       {view === "list" && (
         <div className="w-full mt-10 bg-white m-auto font-Inter border rounded-lg">
           <div className="py-3 px-2 flex items-center rounded-lg border-b">
+            {location.pathname.includes("dashboard") && (
+              <input
+                type="checkbox"
+                className="accent-primary w-[10%]"
+                checked={isAllSelected}
+                onChange={(e) => onBulkSelect(e.target.checked)}
+              />
+            )}
             <span className="flex w-[20%] text-h12 font-bold">
               Business Name
             </span>
@@ -52,7 +71,9 @@ const BusinessAssets: React.FC<VehicleProps> = ({ data, view }) => {
             <span className="flex w-[15%] text-h12 font-bold">
               Contact Email
             </span>
-            <span className="block text-center w-[10%] text-h12 font-bold"></span>
+            {!location.pathname.includes("dashboard") && (
+              <span className="block text-center w-[10%] text-h12 font-bold"></span>
+            )}
           </div>
           <div>
             {data.map((asset, index) => (
@@ -63,6 +84,14 @@ const BusinessAssets: React.FC<VehicleProps> = ({ data, view }) => {
                 } py-3 px-2 font-DM-Sans`}
               >
                 <div className="cursor-pointer flex items-center justify-between w-full relative animate-fadeDownFast">
+                  {location.pathname.includes("dashboard") && (
+                    <input
+                      type="checkbox"
+                      className="accent-primary w-[10%]"
+                      checked={selectedPitches.includes(asset.id)}
+                      onChange={() => onPitchSelect(asset.id)}
+                    />
+                  )}
                   <span className="block w-[20%] text-h12 text-[#272525] font-normal">
                     {asset.name}
                   </span>
@@ -75,14 +104,24 @@ const BusinessAssets: React.FC<VehicleProps> = ({ data, view }) => {
                   <span className="block w-[15%] text-h12 text-gray-1 font-normal">
                     {asset.email}
                   </span>
-                  <span className="flex justify-center w-[10%] text-h12 font-normal">
-                    <img
-                      src={iconHorizon}
-                      alt=""
-                      className="p-2 bg-gray-50 more"
-                      onClick={() => handleShow(index)}
-                    />
-                  </span>
+                  {!location.pathname.includes("dashboard") && (
+                    <span className="flex justify-center w-[10%] text-h12 font-normal">
+                      <img
+                        src={iconHorizon}
+                        alt=""
+                        className="p-2 bg-gray-50 more"
+                        onClick={() => handleShow(index)}
+                      />
+                      <span className="flex justify-center w-[10%] text-h12 font-normal">
+                        <img
+                          src={iconHorizon}
+                          alt=""
+                          className="p-2 bg-gray-50 more"
+                          onClick={() => handleShow(index)}
+                        />
+                      </span>
+                    </span>
+                  )}
                   {showDropdownIndex === index && (
                     <div
                       ref={modalRef}
@@ -111,7 +150,12 @@ const BusinessAssets: React.FC<VehicleProps> = ({ data, view }) => {
                 className="animate-fadeUp bg-white p-3 rounded-lg border relative"
               >
                 <div className="flex justify-between mb-3">
-                  <input type="checkbox" className="accent-primary-dark" />
+                  <input
+                    type="checkbox"
+                    className="accent-primary-dark"
+                    checked={selectedPitches.includes(asset.id)}
+                    onChange={() => onPitchSelect(asset.id)}
+                  />
                   <img src={gridMenuIcon} alt="" />
                 </div>
                 <div className="flex items-center">
