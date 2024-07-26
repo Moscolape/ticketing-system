@@ -54,12 +54,14 @@ const BusinessAssets: React.FC<VehicleProps> = ({
         <div className="w-full mt-10 bg-white m-auto font-Inter border rounded-lg">
           <div className="py-3 px-2 flex items-center rounded-lg border-b">
             {location.pathname.includes("dashboard") && (
-              <input
-                type="checkbox"
-                className="accent-primary w-[10%]"
-                checked={isAllSelected}
-                onChange={(e) => onBulkSelect(e.target.checked)}
-              />
+              <div className="w-[5%]">
+                <input
+                  type="checkbox"
+                  className="accent-primary"
+                  checked={isAllSelected}
+                  onChange={(e) => onBulkSelect(e.target.checked)}
+                />
+              </div>
             )}
             <span className="flex w-[20%] text-h12 font-bold">
               Business Name
@@ -68,11 +70,11 @@ const BusinessAssets: React.FC<VehicleProps> = ({
             <span className="flex w-[20%] text-h12 font-bold">
               Contact Phone Number
             </span>
-            <span className="flex w-[15%] text-h12 font-bold">
+            <span className="flex w-[20%] text-h12 font-bold">
               Contact Email
             </span>
             {!location.pathname.includes("dashboard") && (
-              <span className="block text-center w-[10%] text-h12 font-bold"></span>
+              <span className="block text-center w-[5%] text-h12 font-bold"></span>
             )}
           </div>
           <div>
@@ -85,12 +87,14 @@ const BusinessAssets: React.FC<VehicleProps> = ({
               >
                 <div className="cursor-pointer flex items-center justify-between w-full relative animate-fadeDownFast">
                   {location.pathname.includes("dashboard") && (
-                    <input
-                      type="checkbox"
-                      className="accent-primary w-[10%]"
-                      checked={selectedPitches.includes(asset.id)}
-                      onChange={() => onPitchSelect(asset.id)}
-                    />
+                    <div className="w-[5%]">
+                      <input
+                        type="checkbox"
+                        className="accent-primary"
+                        checked={selectedPitches.includes(asset.id)}
+                        onChange={() => onPitchSelect(asset.id)}
+                      />
+                    </div>
                   )}
                   <span className="block w-[20%] text-h12 text-[#272525] font-normal">
                     {asset.name}
@@ -101,25 +105,17 @@ const BusinessAssets: React.FC<VehicleProps> = ({
                   <span className="block w-[20%] text-h12 text-[#272525] font-normal">
                     {asset.phone_number}
                   </span>
-                  <span className="block w-[15%] text-h12 text-gray-1 font-normal">
+                  <span className="block w-[20%] text-h12 text-gray-1 font-normal">
                     {asset.email}
                   </span>
                   {!location.pathname.includes("dashboard") && (
-                    <span className="flex justify-center w-[10%] text-h12 font-normal">
+                    <span className="flex justify-center w-[5%] text-h12 font-normal">
                       <img
                         src={iconHorizon}
                         alt=""
                         className="p-2 bg-gray-50 more"
                         onClick={() => handleShow(index)}
                       />
-                      <span className="flex justify-center w-[10%] text-h12 font-normal">
-                        <img
-                          src={iconHorizon}
-                          alt=""
-                          className="p-2 bg-gray-50 more"
-                          onClick={() => handleShow(index)}
-                        />
-                      </span>
                     </span>
                   )}
                   {showDropdownIndex === index && (
